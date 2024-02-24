@@ -33,11 +33,13 @@ MAC: ${SRCS}
 	$(CC) -fsanitize=address -g3 $(SRCS) libft.a ${LIBMLX} -I ${INCLUDES} -I ${MLX_INCLUDE} -lm -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${PROGRAM}
 
 clean:
-	echo "rm -f ${OBJECTS} ${NAME}"
+	echo "Cleaning files"
+	make -C ./libft clean
 	rm -f ${OBJECTS} ${NAME}
 
 fclean:	clean
-	echo "rm -f ${PROGRAM}"
+	echo "Cleaning files and removing archives and program"
+	make -C ./libft fclean
 	rm -f ${PROGRAM}
 	rm -f libft.a
 

@@ -18,8 +18,6 @@ int	keybinds(int k, t_data *data)
 		reset_fractal(data);
 	if (k == KEY_H)
 		data->menu_option *= -1;
-	if (k == KEY_I)
-		data->interpolate_option *= -1;
 	if (k == KEY_ESCAPE)
 		exit_destroy(data, "Exiting Program.");
 	set_color(k, data);
@@ -52,5 +50,12 @@ void	paint_it_black(t_data *img)
 int	no_event(t_data *data)
 {
 	(void) data;
+    return (0);
+}
+
+
+int	close_window(t_data *data)
+{
+	exit_destroy(data, "Exiting Program.");
     return (0);
 }

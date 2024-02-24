@@ -17,7 +17,10 @@ int	scroll_zoom(int k, int x, int y, t_data *data)
 	double	zoom;
 
 	zoom = 0;
-	if (k >= MOUSE_LMB && k <= MOUSE_SCROLL_DOWN && x >= 0 && x < data->width
+	printf("MOUSE(%d) X(%d) Y(%d)\n", k, x, y);
+	if (data->fractal_nb >= 2)
+		flame_zoom(k, x, y, data);
+	else if (k >= MOUSE_LMB && k <= MOUSE_SCROLL_DOWN && x >= 0 && x < data->width
 		&& y >= 0 && y < data->height)
 	{
 		if (k == MOUSE_SCROLL_UP)
@@ -38,14 +41,33 @@ int	scroll_zoom(int k, int x, int y, t_data *data)
 	return (0);
 }
 
+int	flame_zoom(int k, int x, int y, t_data *data)
+{
+	if (k >= MOUSE_LMB && k <= MOUSE_SCROLL_DOWN && x >= 0 && x < data->width
+		&& y >= 0 && y < data->height)
+	{
+		if (k == MOUSE_SCROLL_UP)
+			data->zoom++;
+		else if (k == MOUSE_SCROLL_DOWN)
+			data->zoom--;
+		if (data->zoom < data->min_zoom)
+			data->zoom = data->min_zoom;
+		switch_julia_set(k, x, y, data);
+		draw_fractal(data);
+		return (1);
+	}
+	return (0);
+}
+
 void	switch_julia_set(int k, int x, int y, t_data *data)
 {
 	if (k == MOUSE_LMB || k == MOUSE_RMB)
 	{
-		data->seed = ((x * y) / ((data->width * data->height))) * (UINT_MAX);
+		data->seed = (x * y);
 		data->julia.real = (((double)x) / ((double)data->width)) * (2.00)
 			+ -1.00;
 		data->julia.imag = (((double)y) / ((double)data->height)) * (2.00)
 			+ -1.00;
+		printf("SEED(%d)\n", data->seed);
 	}
 }

@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 		exit_destroy(&data, "Usage not correct");
 	mlx_mouse_hook(data.win, scroll_zoom, &data);
 	mlx_hook(data.win, 2, 1L << 0, keybinds, &data);
+	mlx_hook(data.win, 17, 1L << 0, close_window, &data);
 	mlx_loop(data.mlx);
 	return (1);
 }

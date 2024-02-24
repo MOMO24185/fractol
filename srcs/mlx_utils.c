@@ -23,15 +23,14 @@ int	init_mlx_var(t_data *data, char *name)
 			&data->line_length, &data->endian);
 	data->offset_x = 0;
 	data->offset_y = 0;
-	data->interpolate_option = -1;
 	data->menu_option = -1;
 	data->color = SILVER;
 	data->fill = BLACK;
 	data->fractal_nb = -1;
-	if (!data->mlx || !data->win || !check_set(data, name))
+	if (!data->mlx || !data->win || !data->addr || !check_set(data, name))
 		return (0);
 	else
-		return (1);
+		return (mem_allocate_histogram(data), 1);
 }
 
 void	reset_fractal(t_data *data)
@@ -59,11 +58,11 @@ void	draw_fractal(t_data *data)
 		x = 0;
 		while (x < data->width)
 		{
-			if (data->fractal_nb != 2 && data->menu_option > 0 && x <= data
+			if (data->fractal_nb < 2 && data->menu_option > 0 && x <= data
 				->width - 10 && x >= data->width - 275
 				&& y >= 10 && y <= 260)
 				my_mlx_pixel_put(data, x, y, create_color(0, BLACK));
-			else if (data->fractal_nb != 2 && data->menu_option < 0 && x
+			else if (data->fractal_nb < 2 && data->menu_option < 0 && x
 				<= data->width - 10 && x >= data->width - 275
 				&& y >= 10 && y <= 30)
 				my_mlx_pixel_put(data, x, y, create_color(0, BLACK));
@@ -73,7 +72,7 @@ void	draw_fractal(t_data *data)
 		}
 		y++;
 	}
-	if (data->fractal_nb == 2)
+	if (data->fractal_nb >= 2)
 		plot_flames_histogram(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	draw_menu(data);
@@ -90,6 +89,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	exit_destroy(t_data *data, char *err)
 {
+	free_histogram(data);
 	ft_putendl_fd(err, 1);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(1);

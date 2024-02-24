@@ -16,7 +16,6 @@ double	*params_assign_scale(double *params, t_data *data, int i, char c)
 {
 	unsigned int	seed;
 
-	data->seed = simple_rand(data->seed);
 	seed = simple_rand(data->seed);
 	if (c == 'x')
 	{
@@ -41,7 +40,6 @@ double	*params_assign_rotation(double *params, t_data *data, int i, char c)
 {
 	unsigned int	seed;
 
-	data->seed = simple_rand(data->seed);
 	seed = simple_rand(data->seed);
 	if (c == 'x')
 	{
@@ -66,7 +64,6 @@ double	*params_assign_shift(double *params, t_data *data, int i, char c)
 {
 	unsigned int	seed;
 
-	data->seed = simple_rand(data->seed);
 	seed = simple_rand(data->seed);
 	if (c == 'x')
 	{

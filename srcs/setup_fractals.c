@@ -14,15 +14,15 @@
 
 static int	check_flame_set(t_data *data, char *name)
 {
+	data->min_zoom = 0;
+	data->zoom = 16;
+	data->seed = 24;
 	if (data->fractal_nb == 2 || (name && !ft_strcmp("FLAME", name)))
-	{
 		data->fractal_nb = 2;
-		data->min_zoom = 2;
-		data->zoom = 2;
-		data->seed = 24;
-		data->max = 100;
-		mem_allocate_histogram(data);
-	}
+	else if (data->fractal_nb == 3 || (name && !ft_strcmp("FLAME2", name)))
+		data->fractal_nb = 3;
+	else if (data->fractal_nb == 4 || (name && !ft_strcmp("FLAME3", name)))
+		data->fractal_nb = 4;
 	else
 		return (0);
 	return (1);
@@ -32,17 +32,14 @@ int	check_set(t_data *data, char *name)
 {
 	data->zoom = 300;
 	data->min_zoom = 300;
+	data->max = 150;
 	if (data->fractal_nb == 0 || (name && !ft_strcmp("MANDEL", name)))
-	{
 		data->fractal_nb = 0;
-		data->max = 80;
-	}
 	else if (data->fractal_nb == 1 || (name && !ft_strcmp("JULIA", name)))
 	{
 		data->fractal_nb = 1;
 		data->offset_x = 60;
 		data->offset_y = 40;
-		data->max = 300;
 		data->julia.real = -0.506667;
 		data->julia.imag = 0.520000;
 	}
@@ -60,8 +57,8 @@ void	setup_fractal(t_data *data, int x, int y)
 	if (data->fractal_nb == 0)
 		draw_mandelbrot((double)x, (double)y, data);
 	else if (data->fractal_nb == 1)
-		draw_julia(x, y, data);
-	else if (data->fractal_nb == 2)
+		draw_julia((double)x, (double)y, data);
+	else if (data->fractal_nb >= 2)
 	{
 		coefficient_init(data);
 		create_flames_histogram((double)x, (double)y, data);

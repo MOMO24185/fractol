@@ -46,31 +46,33 @@ void	coefficient_init(t_data *data)
 {
 	double			seed;
 	int				i;
+	double			z;
 
+	z = data->zoom + 0.00;
 	i = -1;
 	seed = simple_rand(data->seed) + 0.00;
 	while (++i < data->max)
 	{
+		data->flame_coef[i].scale_x = (seed / (UINT_MAX)) * (2) + -1.00;
 		seed = simple_rand(seed) + 0.00;
-		data->flame_coef[i].scale_x = (seed / (UINT_MAX)) * (2.00) + -1.00;
-		seed = simple_rand(seed) + 0.00;
-		data->flame_coef[i].rotation_x = (seed / (UINT_MAX)) * (2.00) + -1.00;
+		data->flame_coef[i].rotation_x = (seed / (UINT_MAX)) * (2) - 1.00;
 		seed = simple_rand(seed) + 0.00;
 		data->flame_coef[i].shift_x = ((seed / (UINT_MAX)) * ((data->width
-						>> 2) - -(data->width >> 2)) + -(data->width >> 2));
+						/ z) - -(data->width / z)) + -(data->width / z));
 		seed = simple_rand(seed) + 0.00;
-		data->flame_coef[i].scale_y = (seed / (UINT_MAX)) * (2.00) + -1.00;
+		data->flame_coef[i].scale_y = (seed / (UINT_MAX)) * (2) + -1.00;
 		seed = simple_rand(seed) + 0.00;
-		data->flame_coef[i].rotation_y = (seed / (UINT_MAX)) * (2.00) + -1.00;
+		data->flame_coef[i].rotation_y = (seed / (UINT_MAX)) * (2) + -1.00;
 		seed = simple_rand(seed) + 0.00;
 		data->flame_coef[i].shift_y = ((seed / (UINT_MAX)) * ((data->height
-						>> 2) - -(data->height >> 2)) + -(data->height >> 2));
+						/ z) - -(data->height / z)) + -(data->height / z));
+		seed = simple_rand(seed) + 0.00;
 	}
 }
 
-void	set_coefficients(float *x, float *y, int i, t_data *img)
+void	set_coefficients(double *x, double *y, int i, t_data *img)
 {
-	if (i >= 3 && img->interpolate_option == 1)
+	if (i >= 3)
 	{
 		cosine_interpolation(img, i, &img->result_coef);
 		*x = img->result_coef.scale_x * *x + img->result_coef.rotation_x * *y
@@ -78,7 +80,7 @@ void	set_coefficients(float *x, float *y, int i, t_data *img)
 		*y = img->result_coef.scale_y * *x + img->result_coef.rotation_y * *y
 			+ img->result_coef.shift_y;
 	}
-	else if (img->interpolate_option == -1)
+	else
 	{
 		*x = img->flame_coef[i].scale_x * *x + img->flame_coef[i].rotation_x
 			* *y + img->flame_coef[i].shift_x;

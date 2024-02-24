@@ -12,11 +12,11 @@
 
 #include "../includes/fractol.h"
 
-long long	get_max_histogram(t_data *img)
+int	get_max_histogram(t_data *img)
 {
 	int			x;
 	int			y;
-	long long	t_color;
+	int			t_color;
 
 	y = 0;
 	t_color = 0;
