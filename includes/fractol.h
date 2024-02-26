@@ -21,8 +21,6 @@
 # define HEIGHT 720
 # define WIDTH 1280
 
-# include <stdio.h>
-
 //complex number
 typedef struct s_cmplx {
 	double	real;
@@ -124,6 +122,7 @@ int				create_color(int t, int color);
 //Menu functions, including keyboard and mouse controls
 
 void			exit_destroy(t_data *data, char *err);
+void			exit_peacefully(void);
 void			draw_menu(t_data *data);
 void			movement(int k, t_data *data);
 int				check_set(t_data *data, char *name);
@@ -140,6 +139,7 @@ void			setup_fractal(t_data *data, int x, int y);
 int				init_mlx_var(t_data *data, char *name);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			draw_fractal(t_data *data);
+void			finalize_image(t_data *data);
 void			reset_fractal(t_data *data);
 void			paint_it_black(t_data *img);
 

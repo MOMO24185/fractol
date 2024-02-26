@@ -16,8 +16,14 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc == 2 && init_mlx_var(&data, argv[1]))
+	if (argc != 2)
+		exit_peacefully();
+	if (init_mlx_var(&data, argv[1]))
+	{
+		ft_putendl_fd("RENDERING", 1);
 		draw_fractal(&data);
+		finalize_image(&data);
+	}
 	else
 		exit_destroy(&data, "Usage not correct");
 	mlx_mouse_hook(data.win, scroll_zoom, &data);

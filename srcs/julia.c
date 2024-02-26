@@ -28,13 +28,15 @@ int	julia(t_data *img)
 	int		iterations;
 	double	modulo;
 	double	temp;
+
 	iterations = 0;
 	temp = 0;
 	modulo = sqrtf(img->c.real * img->c.real + img->c.imag * img->c.imag);
 	while ((modulo < 4) && (iterations < img->max))
 	{
 		temp = img->c.real;
-		img->c.real = img->c.real * img->c.real - img->c.imag * img->c.imag + img->julia.real;
+		img->c.real = img->c.real * img->c.real - img->c.imag * img->c.imag
+			+ img->julia.real;
 		img->c.imag = 2 * img->c.imag * temp + img->julia.imag;
 		modulo = sqrtf(img->c.real * img->c.real + img->c.imag * img->c.imag);
 		iterations++;

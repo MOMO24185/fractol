@@ -19,19 +19,14 @@ int	create_trgb(int t, int r, int g, int b)
 
 int	create_color(int t, int color)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = get_red_color(color);
 	g = get_green_color(color);
 	b = get_blue_color(color);
 	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int	get_t_color(int color)
-{
-	return ((color >> 24) & 0xFF);
 }
 
 int	get_red_color(int color)

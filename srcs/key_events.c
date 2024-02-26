@@ -40,7 +40,7 @@ void	switch_fractal(int k, t_data *data)
 		data->fractal_nb--;
 	else if (k == KEY_GT && data->fractal_nb < 3)
 		data->fractal_nb++;
-	if (data->fractal_nb >= 2 && data->fractal_nb <= 4)
+	if (data->fractal_nb >= 2 && data->fractal_nb <= 3)
 		paint_it_black(data);
 	check_set(data, NULL);
 }

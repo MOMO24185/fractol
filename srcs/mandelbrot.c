@@ -35,7 +35,8 @@ int	mandelbrot(t_data *img)
 	while ((modulo < 4) && (iterations < img->max))
 	{
 		temp = img->z.real;
-		img->z.real = img->z.real * img->z.real - img->z.imag * img->z.imag + img->c.real;
+		img->z.real = img->z.real * img->z.real - img->z.imag * img->z.imag
+			+ img->c.real;
 		img->z.imag = 2 * img->z.imag * temp + img->c.imag;
 		modulo = img->z.real * img->z.real + img->z.imag * img->z.imag;
 		iterations++;

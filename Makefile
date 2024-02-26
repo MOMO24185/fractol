@@ -11,7 +11,8 @@ SRCS = ./srcs/main.c\
 		./srcs/histogram_functions.c\
 		./srcs/interpolation_params.c\
 		./srcs/interpolation.c\
-		./srcs/setup_fractals.c
+		./srcs/setup_fractals.c\
+		./srcs/exit_handlers.c
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = ./includes/
 PROGRAM = fractol

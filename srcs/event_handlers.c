@@ -6,7 +6,7 @@
 /*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:25:32 by melshafi          #+#    #+#             */
-/*   Updated: 2024/02/19 14:37:13 by melshafi         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:57:03 by melshafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	keybinds(int k, t_data *data)
 	set_color(k, data);
 	movement(k, data);
 	switch_fractal(k, data);
-	printf("(%d)\n", k);
+	ft_putendl_fd("RENDERING", 1);
 	draw_fractal(data);
+	finalize_image(data);
 	return (1);
 }
 
@@ -50,12 +51,11 @@ void	paint_it_black(t_data *img)
 int	no_event(t_data *data)
 {
 	(void) data;
-    return (0);
+	return (0);
 }
-
 
 int	close_window(t_data *data)
 {
 	exit_destroy(data, "Exiting Program.");
-    return (0);
+	return (0);
 }

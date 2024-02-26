@@ -33,7 +33,7 @@ int	create_flames_histogram(double x, double y, t_data *img)
 		adjusted_y = y + modified_h;
 		if (adjusted_y >= 0 && adjusted_y < img->height && adjusted_x >= 0
 			&& adjusted_x < img->width && i > 20)
-				img->flame_hst[adjusted_y][adjusted_x].count++;
+			img->flame_hst[adjusted_y][adjusted_x].count++;
 		i++;
 	}
 	return (i);
@@ -61,12 +61,6 @@ void	set_flame_plot(double *x, double *y, t_data *img)
 		*x = r * (pow(p0, 3) + pow(p1, 3));
 		*y = r * (pow(p0, 3) - pow(p1, 3));
 	}
-	else if (img->fractal_nb == 4)
-	{
-		r2 = r * r;
-		*x = *x * sin(r2) - *y * cos(r2);
-		*y = *x * cos(r2) + *y * sin(r2);
-	}
 }
 
 void	plot_flames_histogram(t_data *img)
@@ -84,8 +78,10 @@ void	plot_flames_histogram(t_data *img)
 		x = 0;
 		while (x < img->width)
 		{
-			t_color = ((img->flame_hst[y][x].count - 0.00) / (max - 0.00)) * (255.00 - 10.00) + 10.00;
-			my_mlx_pixel_put(img, x, y, create_trgb(t_color, t_color, t_color, t_color));
+			t_color = ((img->flame_hst[y][x].count - 0.00) / (max - 0.00)) * (
+					255.00 - 10.00) + 10.00;
+			my_mlx_pixel_put(img, x, y, create_trgb(t_color, t_color, t_color,
+					t_color));
 			x++;
 		}
 		y++;
@@ -106,6 +102,6 @@ double	smoothstep(unsigned int seed)
 {
 	double	final;
 
-    final = ((seed - 0.00) / (UINT_MAX - 0.00)) * (1.00 - 0.00) + 0.00;
+	final = ((seed - 0.00) / (UINT_MAX - 0.00)) * (1.00 - 0.00) + 0.00;
 	return (final);
 }

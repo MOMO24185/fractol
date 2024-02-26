@@ -6,7 +6,7 @@
 /*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:00:39 by melshafi          #+#    #+#             */
-/*   Updated: 2024/02/19 14:30:46 by melshafi         ###   ########.fr       */
+/*   Updated: 2024/02/26 08:15:58 by melshafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check_flame_set(t_data *data, char *name)
 {
 	data->min_zoom = 0;
-	data->zoom = 16;
+	data->zoom = 8;
 	data->seed = 24;
 	if (data->fractal_nb == 2 || (name && !ft_strcmp("FLAME", name)))
 		data->fractal_nb = 2;

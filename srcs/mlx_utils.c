@@ -28,7 +28,10 @@ int	init_mlx_var(t_data *data, char *name)
 	data->fill = BLACK;
 	data->fractal_nb = -1;
 	if (!data->mlx || !data->win || !data->addr || !check_set(data, name))
+	{
+		data->fractal_nb = -1;
 		return (0);
+	}
 	else
 		return (mem_allocate_histogram(data), 1);
 }
@@ -47,16 +50,15 @@ void	draw_fractal(t_data *data)
 	int	y;
 	int	x;
 
-	y = 0;
-	data->min_x = ((data->offset_x + (data->width >> 1)) / (data->zoom / 2.00))
+	y = -1;
+	data->min_x = ((data->offset_x + (data->width / 2)) / (data->zoom / 2.00))
 		/ -2.00;
-	data->min_y = ((data->offset_y + (data->height >> 1)) / (data->zoom / 2.00))
+	data->min_y = ((data->offset_y + (data->height / 2)) / (data->zoom / 2.00))
 		/ -2.00;
-	ft_putendl_fd("RENDERING", 1);
-	while (y < data->height && data->img && data->addr)
+	while (++y < data->height && data->img && data->addr)
 	{
-		x = 0;
-		while (x < data->width)
+		x = -1;
+		while (++x < data->width)
 		{
 			if (data->fractal_nb < 2 && data->menu_option > 0 && x <= data
 				->width - 10 && x >= data->width - 275
@@ -68,10 +70,12 @@ void	draw_fractal(t_data *data)
 				my_mlx_pixel_put(data, x, y, create_color(0, BLACK));
 			else
 				setup_fractal(data, x, y);
-			x++;
 		}
-		y++;
 	}
+}
+
+void	finalize_image(t_data *data)
+{
 	if (data->fractal_nb >= 2)
 		plot_flames_histogram(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
@@ -84,13 +88,5 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	exit_destroy(t_data *data, char *err)
-{
-	free_histogram(data);
-	ft_putendl_fd(err, 1);
-	mlx_destroy_window(data->mlx, data->win);
-	exit(1);
+	*(unsigned int *)dst = color;
 }
