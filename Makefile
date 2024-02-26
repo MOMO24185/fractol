@@ -25,13 +25,13 @@ LINUX: ${SRCS}
 	echo "Compiling LIBFT archive"
 	make -C ./libft fclean all clean
 	mv ./libft/libft.a ./libft.a
-	$(CC) -fsanitize=address -g3 $(SRCS) libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -I ./ -o ${PROGRAM}
+	${CC} ${CFLAGS} -fsanitize=address -g3 ${SRCS} libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -I ./ -o ${PROGRAM}
 
 MAC: ${SRCS}
 	echo "Compiling LIBFT archive"
 	make -C ./libft fclean all clean
 	mv ./libft/libft.a ./libft.a
-	$(CC) -fsanitize=address -g3 $(SRCS) libft.a ${LIBMLX} -I ${INCLUDES} -I ${MLX_INCLUDE} -lm -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${PROGRAM}
+	${CC} ${CFLAGS} -fsanitize=address -g3 ${SRCS} libft.a ${LIBMLX} -I ${INCLUDES} -I ${MLX_INCLUDE} -lm -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${PROGRAM}
 
 clean:
 	echo "Cleaning files"
