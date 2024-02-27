@@ -41,7 +41,6 @@ int	create_flames_histogram(double x, double y, t_data *img)
 
 void	set_flame_plot(double *x, double *y, t_data *img)
 {
-	float	r2;
 	float	p0;
 	float	p1;
 	float	r;

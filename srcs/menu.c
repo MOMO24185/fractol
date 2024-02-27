@@ -14,12 +14,7 @@
 
 static void	specific_menu(t_data *data)
 {
-	if (data->fractal_nb >= 2)
-	{
-		mlx_string_put(data->mlx, data->win, data->width - 250, 250, WHITE,
-			"Use Interpolation : Click [I] Button");
-	}
-	else if (data->fractal_nb == 1)
+	if (data->fractal_nb == 1)
 	{
 		mlx_string_put(data->mlx, data->win, data->width - 250, 250, WHITE,
 			"Select Julia : Click on the screen");
@@ -46,5 +41,6 @@ void	draw_menu(t_data *data)
 			"Next Fractal : Press [>] Button");
 		mlx_string_put(data->mlx, data->win, data->width - 250, 225, WHITE,
 			"Reset Display : Press [R] Button");
+		specific_menu(data);
 	}
 }
