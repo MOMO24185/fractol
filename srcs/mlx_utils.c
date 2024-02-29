@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-int	init_mlx_var(t_data *data, char *name)
+int	init_mlx_var(t_data *data, char *name, char **argv)
 {
 	data->width = WIDTH;
 	data->height = HEIGHT;
@@ -27,7 +27,7 @@ int	init_mlx_var(t_data *data, char *name)
 	data->color = SILVER;
 	data->fill = BLACK;
 	data->fractal_nb = -1;
-	if (!data->mlx || !data->win || !data->addr || !check_set(data, name))
+	if (!data->mlx || !data->win || !data->addr || !check_set(data, name, argv))
 	{
 		data->fractal_nb = -1;
 		return (0);
@@ -42,7 +42,7 @@ void	reset_fractal(t_data *data)
 	data->offset_y = 0;
 	data->width = WIDTH;
 	data->height = HEIGHT;
-	check_set(data, NULL);
+	check_set(data, NULL, NULL);
 }
 
 void	draw_fractal(t_data *data)

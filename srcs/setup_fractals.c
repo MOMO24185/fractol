@@ -28,7 +28,22 @@ static int	check_flame_set(t_data *data, char *name)
 	return (1);
 }
 
-int	check_set(t_data *data, char *name)
+static int	check_julia_set(t_data *data, char *name, char **argv)
+{
+	if (name)
+	{
+		data->julia.real = ft_strtod(argv[2]);
+		data->julia.imag = ft_strtod(argv[3]);
+	}
+	else
+	{	
+		data->julia.real = -0.506667;
+		data->julia.imag = 0.520000;
+	}
+	return (1);
+}
+
+int	check_set(t_data *data, char *name, char **argv)
 {
 	data->zoom = 300;
 	data->min_zoom = 300;
@@ -40,8 +55,7 @@ int	check_set(t_data *data, char *name)
 		data->fractal_nb = 1;
 		data->offset_x = 60;
 		data->offset_y = 40;
-		data->julia.real = -0.506667;
-		data->julia.imag = 0.520000;
+		check_julia_set(data, name, argv);
 	}
 	else
 		return (check_flame_set(data, name));

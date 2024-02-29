@@ -123,9 +123,10 @@ int				create_color(int t, int color);
 
 void			exit_destroy(t_data *data, char *err);
 void			exit_peacefully(void);
+void			exit_no_julia_params(void);
 void			draw_menu(t_data *data);
 void			movement(int k, t_data *data);
-int				check_set(t_data *data, char *name);
+int				check_set(t_data *data, char *name, char **argv);
 int				keybinds(int k, t_data *data);
 int				scroll_zoom(int k, int x, int y, t_data *data);
 int				flame_zoom(int k, int x, int y, t_data *data);
@@ -136,7 +137,7 @@ void			switch_fractal(int k, t_data *data);
 //mlx init and fractal setup functions
 
 void			setup_fractal(t_data *data, int x, int y);
-int				init_mlx_var(t_data *data, char *name);
+int				init_mlx_var(t_data *data, char *name, char **argv);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			draw_fractal(t_data *data);
 void			finalize_image(t_data *data);

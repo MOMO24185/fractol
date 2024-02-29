@@ -30,3 +30,11 @@ void	exit_peacefully(void)
 	ft_putendl_fd("FLAME - Flame fractal\n", 1);
 	exit(1);
 }
+
+void	exit_no_julia_params(void)
+{
+	ft_putendl_fd("\nWrong number of arguments", 1);
+	ft_putendl_fd("Additional parameters needed for julia set coefficients:\n", 1);
+	ft_putendl_fd("Example: ./fractol JULIA 0.285 0.01\n", 1);
+	exit(1);
+}

@@ -42,7 +42,7 @@ void	switch_fractal(int k, t_data *data)
 		data->fractal_nb++;
 	if (data->fractal_nb >= 2 && data->fractal_nb <= 3)
 		paint_it_black(data);
-	check_set(data, NULL);
+	check_set(data, NULL, NULL);
 }
 
 void	movement(int k, t_data *data)

@@ -15,10 +15,14 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		julia_flag;
 
-	if (argc != 2)
+	julia_flag = ft_strcmp(argv[1], "JULIA");
+	if (argc != 2 && julia_flag)
 		exit_peacefully();
-	if (init_mlx_var(&data, argv[1]))
+	if (argc != 4 && !julia_flag)
+		exit_no_julia_params();
+	if (init_mlx_var(&data, argv[1], argv))
 	{
 		ft_putendl_fd("RENDERING", 1);
 		draw_fractal(&data);

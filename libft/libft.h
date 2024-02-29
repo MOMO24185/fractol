@@ -320,6 +320,8 @@ NULL PROTECTION: YES, Returns NULL if lst, f, or del are NULL. Also clears the
 new linked list to free its memory and returns NULL if memory allocation fails.
 */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+//Converts string to double
+double	ft_strtod(char *str);
 
 ///////////////////////////
 //GET_NEXT_LINE FUNCTIONS//
