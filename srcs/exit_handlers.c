@@ -6,7 +6,7 @@
 /*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:16:56 by melshafi          #+#    #+#             */
-/*   Updated: 2024/02/26 09:19:07 by melshafi         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:10:21 by melshafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void	exit_peacefully(void)
 void	exit_no_julia_params(void)
 {
 	ft_putendl_fd("\nWrong number of arguments", 1);
-	ft_putendl_fd("Additional parameters needed for julia set coefficients:\n", 1);
-	ft_putendl_fd("Example: ./fractol JULIA 0.285 0.01\n", 1);
+	ft_putendl_fd("Additional parameters needed for julia set coefficients:\n",
+		1);
+	ft_putendl_fd("Interesting Julia Sets:", 1);
+	ft_putendl_fd("JULIA 0.285 0.01", 1);
+	ft_putendl_fd("JULIA 0.285 0.01", 1);
+	ft_putendl_fd("JULIA 0.285 0.01\n", 1);
 	exit(1);
 }

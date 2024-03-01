@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	int		julia_flag;
 
 	julia_flag = ft_strcmp(argv[1], "JULIA");
-	if (argc != 2 && julia_flag)
+	if (argc < 2)
 		exit_peacefully();
 	if (argc != 4 && !julia_flag)
 		exit_no_julia_params();

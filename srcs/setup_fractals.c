@@ -6,7 +6,7 @@
 /*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:00:39 by melshafi          #+#    #+#             */
-/*   Updated: 2024/02/26 08:15:58 by melshafi         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:20:11 by melshafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ static int	check_julia_set(t_data *data, char *name, char **argv)
 		data->julia.real = ft_strtod(argv[2]);
 		data->julia.imag = ft_strtod(argv[3]);
 	}
-	else
-	{	
-		data->julia.real = -0.506667;
-		data->julia.imag = 0.520000;
-	}
 	return (1);
 }
 
@@ -49,12 +44,15 @@ int	check_set(t_data *data, char *name, char **argv)
 	data->min_zoom = 300;
 	data->max = 150;
 	if (data->fractal_nb == 0 || (name && !ft_strcmp("MANDEL", name)))
+	{
 		data->fractal_nb = 0;
+		data->offset_y = -10;
+	}
 	else if (data->fractal_nb == 1 || (name && !ft_strcmp("JULIA", name)))
 	{
 		data->fractal_nb = 1;
-		data->offset_x = 60;
-		data->offset_y = 40;
+		data->offset_x = -10;
+		data->offset_y = -5;
 		check_julia_set(data, name, argv);
 	}
 	else
