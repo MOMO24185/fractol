@@ -1,1 +1,2 @@
 # fractol
+A dynamic fractal image generation software featuring three built-in fractal types: Mandelbrot, Julia, and Flame. Users can explore these fractals with interactive features like color customization, zoom functionality, and fractal movement. Additionally, clicking on the screen allows for real-time modification of the Julia set coefficients, offering a deeper level of engagement and exploration.
