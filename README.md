@@ -50,10 +50,7 @@ Execute the program with the following syntax:
 ```
 
 ### Interactive Controls
-- **Zoom In/Out:** Scroll up/down with the mouse.
-- **Move:** Arrow keys or drag with the mouse.
-- **Adjust Julia Parameters:** Click on the screen to modify coefficients dynamically.
-- **Change Colors:** Use predefined keys for color schemes.
+- **View Menu:** Press H to view controls.
 
 ## Key Concepts
 ### Fractals
